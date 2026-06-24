@@ -8,6 +8,7 @@ This repository keeps the original application recipe intact and upgrades the pl
 
 ---
 
+
 ## 🚀 Project Highlights
 
 - Three-tier architecture: **Frontend + Backend API + Database**
