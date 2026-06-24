@@ -289,8 +289,6 @@ Docker Compose local stack
   → AI-ready DevOps release reporting
 ```
 
----
-
 
 ## ✅ GitHub Actions Status
 
@@ -298,7 +296,8 @@ This final clean portfolio version keeps one safe workflow active by default: **
 
 Advanced workflows for frontend CI, backend CI, Terraform quality, CodeQL, dependency review, AWS OIDC deployment, and drift detection are preserved under `.github/workflows-disabled/`. Move them back into `.github/workflows/` only after secrets, AWS OIDC, Terraform backend, and dependency compatibility are configured. This avoids unnecessary red workflow runs on first GitHub upload.
 
-## 🤝 Connect With Me
+---
+---
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:2C5364,100:00C9FF&height=120&section=footer&text=Let's%20Connect&fontColor=ffffff&fontSize=32&fontAlignY=70" />
@@ -318,13 +317,16 @@ Advanced workflows for frontend CI, backend CI, Terraform quality, CodeQL, depen
 
 <p align="center">
   <a href="https://github.com/yugandhar99" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/GitHub-yugandhar99-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github&logoColor=white" alt="GitHub" />
   </a>
-  <a href="https://www.linkedin.com/in/yugandhar-chowdary-33baa4216" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/LinkedIn-Yugandhar%20Chowdary-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  <a href="https://www.linkedin.com/in/yugandhar-devops" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   <a href="https://yugandhar-portfolio-psi.vercel.app/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Portfolio-View%20My%20Work-FF5722?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" />
+    <img src="https://img.shields.io/badge/Portfolio-View%20My%20Work-FF5722?style=flat&logo=vercel&logoColor=white" alt="Portfolio" />
+  </a>
+  <a href="mailto:yugandharethamukkala1999@gmail.com">
+    <img src="https://img.shields.io/badge/Email-Contact%20Me-D14836?style=flat&logo=gmail&logoColor=white" alt="Email" />
   </a>
 </p>
 
