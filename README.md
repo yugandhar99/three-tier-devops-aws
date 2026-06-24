@@ -297,7 +297,6 @@ This final clean portfolio version keeps one safe workflow active by default: **
 Advanced workflows for frontend CI, backend CI, Terraform quality, CodeQL, dependency review, AWS OIDC deployment, and drift detection are preserved under `.github/workflows-disabled/`. Move them back into `.github/workflows/` only after secrets, AWS OIDC, Terraform backend, and dependency compatibility are configured. This avoids unnecessary red workflow runs on first GitHub upload.
 
 ---
----
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:2C5364,100:00C9FF&height=120&section=footer&text=Let's%20Connect&fontColor=ffffff&fontSize=32&fontAlignY=70" />
