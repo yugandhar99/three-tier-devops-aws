@@ -1,0 +1,91 @@
+name: Backend CI
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/backend/**'
+      - '.github/workflows/backend-ci.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/backend/**'
+      - '.github/workflows/backend-ci.yml'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  backend:
+    name: Build, Test, Docker, and Scan Spring Boot Backend
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: hobbie_backend_db_dev
+          MYSQL_ROOT_PASSWORD: local_dev_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -uroot -plocal_dev_password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    defaults:
+      run:
+        working-directory: src/backend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 11
+          cache: maven
+
+      - name: Run tests
+        run: mvn -B test
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/hobbie_backend_db_dev?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&serverTimezone=UTC
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: local_dev_password
+          JWT_SECRET: ci-test-secret
+
+      - name: Package application
+        run: mvn -B package -DskipTests
+
+      - name: Build Docker image
+        run: docker build --target prod -t three-tier-backend:${{ github.sha }} .
+
+      - name: Trivy image scan
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: three-tier-backend:${{ github.sha }}
+          format: sarif
+          output: backend-image-trivy.sarif
+          severity: CRITICAL,HIGH
+          exit-code: '0'
+
+      - name: Upload Trivy SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: backend-image-trivy.sarif
+
+      - name: Generate backend SBOM
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: image
+          image-ref: three-tier-backend:${{ github.sha }}
+          format: cyclonedx
+          output: backend-sbom.cdx.json
+
+      - name: Upload backend SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-sbom
+          path: backend-sbom.cdx.json

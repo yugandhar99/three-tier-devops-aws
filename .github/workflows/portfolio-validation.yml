@@ -1,0 +1,72 @@
+name: Portfolio Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate repository structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required_files=(
+            "README.md"
+            "SECURITY.md"
+            "PORTFOLIO_NOTES.md"
+            "GITHUB_UPLOAD_STEPS.md"
+            "src/docker-compose.yml"
+            "src/frontend/Dockerfile"
+            "src/backend/Dockerfile"
+            "infra/main.tf"
+            "infra/variables.tf"
+            "infra/outputs.tf"
+            "infra/backend.tf.example"
+            "scripts/genai_release_summary.py"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Missing required file: $file"
+              exit 1
+            fi
+          done
+
+          echo "Repository structure validation passed."
+
+      - name: Check README portfolio footer
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "Connect With Me" README.md
+          grep -q "github.com/yugandhar99" README.md
+          grep -q "linkedin.com/in/yugandhar-chowdary-33baa4216" README.md
+          grep -q "yugandhar-portfolio-psi.vercel.app" README.md
+          echo "README footer validation passed."
+
+      - name: Python syntax check
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/genai_release_summary.py
+          echo "Python script syntax validation passed."
+
+      - name: Generate offline release summary smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/genai_release_summary.py --mode offline --output release-summary.json
+          test -s release-summary.json
+          echo "Offline GenAI release summary smoke test passed."

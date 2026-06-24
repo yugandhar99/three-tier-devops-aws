@@ -1,0 +1,77 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  frontend:
+    name: Build, Test, and Scan React Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: src/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Test
+        run: npm test -- --watchAll=false
+
+      - name: Build
+        run: npm run build
+
+      - name: Trivy filesystem scan
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: fs
+          scan-ref: src/frontend
+          format: sarif
+          output: frontend-trivy.sarif
+          severity: CRITICAL,HIGH
+          exit-code: '0'
+
+      - name: Upload Trivy SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: frontend-trivy.sarif
+
+      - name: Generate frontend SBOM
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: fs
+          scan-ref: src/frontend
+          format: cyclonedx
+          output: frontend-sbom.cdx.json
+
+      - name: Upload frontend SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-sbom
+          path: frontend-sbom.cdx.json
