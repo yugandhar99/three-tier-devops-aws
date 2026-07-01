@@ -2,7 +2,7 @@
 
 ![Project Overview](static/images/project.png)
 
-A production-style three-tier DevOps project that deploys a **React frontend**, **Spring Boot backend**, and **MySQL database** on AWS using **Terraform**, **ECS Fargate**, **RDS**, **S3**, **CloudFront**, **Route 53**, **GitHub Actions**, and DevS ecOps automation.
+A production-style three-tier DevOps project that deploys a **React frontend**, **Spring Boot backend**, and **MySQL database** on AWS using **Terraform**, **ECS Fargate**, **RDS**, **S3**, **CloudFront**, **Route 53**, **GitHub Actions**, and DevSecOps automation.
 
 This repository keeps the original application recipe intact and upgrades the platform layer to show modern cloud engineering practices: secure CI/CD, infrastructure as code, containerization, security scanning, SBOM generation, drift detection, CloudWatch-ready operations, and AI-ready release summaries.
 
