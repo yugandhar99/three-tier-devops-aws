@@ -1,4 +1,4 @@
-var iable "hosted_zone_name" {
+variable "hosted_zone_name" {
   description = "The name of the Route 53 Hosted Zone (e.g., example.com)"
   type        = string
 }
