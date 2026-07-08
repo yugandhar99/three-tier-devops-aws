@@ -1,4 +1,4 @@
-name: Docker Build Scan and Push
+nam e: Docker Build Scan and Push
 description: Builds and pushes Docker images with metadata and security scanning
 inputs:
   suffix:
