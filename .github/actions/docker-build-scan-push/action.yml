@@ -1,7 +1,6 @@
 name: Docker Build Scan and Push
 description: Builds and pushes Docker images with metadata and security scanning
 inputs:
-
   suffix:
     description: "Suffix for image name (e.g., frontend/backend)"
     required: true
