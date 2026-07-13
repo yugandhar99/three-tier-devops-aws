@@ -1,6 +1,7 @@
 name: Sync S3 Bucket
 description: Sync Frontend build artifacts to S3 Bucket
 
+
 inputs:
   aws_access_key_id:
     description: "AWS Access Key ID"
