@@ -8,7 +8,6 @@
 run "demo_plan" {
   command = plan
 
-
   assert {
     condition     = local.project_name == "three-tier-app"
     error_message = "Invalid project name"
