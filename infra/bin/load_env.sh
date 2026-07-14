@@ -2,6 +2,7 @@
 # set -euo pipefail
 GIT_PS1_SHOWCONFLICTSTATE=${GIT_PS1_SHOWCONFLICTSTATE:-0}
 
+
 # Function to load environment variables from a file
 load_env_file() {
   local env_file="$1"
