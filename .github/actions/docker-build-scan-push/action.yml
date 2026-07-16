@@ -11,6 +11,7 @@ inputs:
     description: "GitHub Token"
     required: true
 
+
 outputs:
   image_ref:
     description: "Full Docker image reference with tag"
