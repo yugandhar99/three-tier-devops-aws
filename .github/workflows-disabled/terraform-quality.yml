@@ -1,5 +1,5 @@
 name: Terraform Quality
- 
+
 on:
   pull_request:
     branches: [ main ]
