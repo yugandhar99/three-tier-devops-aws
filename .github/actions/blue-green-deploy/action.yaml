@@ -1,6 +1,6 @@
 name: Blue-Green Deployment
 description: Deploy to Blue slot then swap to Green slot
-inputs:
+inputs: 
   azure_client_id:
     description: "Azure Client ID"
     type: string
