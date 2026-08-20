@@ -1,6 +1,6 @@
 module "network" {
   source = "./modules/network"
-
+ 
   name_prefix = local.project_name
   cidr        = local.network_cidr
   azs_count   = var.azs_count
