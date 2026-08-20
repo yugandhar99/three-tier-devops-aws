@@ -1,6 +1,6 @@
 name: Portfolio Validation
 
-on:
+on: 
   push:
     branches:
       - main
