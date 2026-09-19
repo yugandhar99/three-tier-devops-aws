@@ -1,6 +1,6 @@
 name: Deploy to AWS with OIDC
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       environment:
