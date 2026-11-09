@@ -1,4 +1,4 @@
-# Three-Tier DevOps AWS Platf orm
+# Three-Tier DevOps AWS Platform
 
 ![Project Overview](static/images/project.png)
 
