@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate an AI-ready DevOps release summary.
+"""Generate an AI-ready DevOps release summary. 
 
 Offline mode intentionally avoids external API calls so the script can run safely in CI.
 Later, the same input can be sent to Amazon Bedrock, OpenAI, or an internal AI gateway.
