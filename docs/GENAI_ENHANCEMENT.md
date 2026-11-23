@@ -1,4 +1,4 @@
-# GenAI Enhancement 
+# GenAI Enhancement
 
 This project includes an optional AI-ready release summary workflow idea.
 
