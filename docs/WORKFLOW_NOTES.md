@@ -1,4 +1,4 @@
-# GitHub Actions Workflow Notes 
+# GitHub Actions Workflow Notes
 
 This repository is prepared as a GitHub portfolio project. To avoid noisy red failures on first upload, only one safe workflow is active by default:
 
