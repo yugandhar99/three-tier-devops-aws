@@ -1,4 +1,4 @@
-# Screenshots Guide 
+# Screenshots Guide
 
 The README already includes existing project snapshots from:
 
