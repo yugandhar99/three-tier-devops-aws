@@ -1,6 +1,6 @@
 # Architecture
 
-This project follows a three-tier application architecture.
+This project follows a three-tier application architecture. 
 
 ## Tier 1: Frontend
 
